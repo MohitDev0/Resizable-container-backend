@@ -9,7 +9,7 @@ const cors = require("cors");
 app.use(express.json());
 // cors to pass data to the frontend
 const corsOptions = {
-    origin: '*',
+    origin: 'https://resizable-container.vercel.app',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
     optionsSuccessStatus: 204,
