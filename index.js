@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 5000;
 const cors = require("cors");
 
 app.use(express.json());
-
+// cors to pass data to the frontend
 const corsOptions = {
     origin: '*',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
@@ -17,6 +17,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
+// get all data
 app.get("/", async (req, res) => {
     try {
         const allData = await model.find({});
@@ -26,6 +27,8 @@ app.get("/", async (req, res) => {
         res.status(500).json(err, "Error in get api");
     }
 })
+
+// add new data
 app.get("/add", async (req, res) => {
     try {
         const addData = new model(req.body);
@@ -37,6 +40,8 @@ app.get("/add", async (req, res) => {
     }
 })
 
+
+// update/change the content
 app.put("/update", async (req, res) => {
     try {
         await model.findByIdAndUpdate(req.body._id, { $set: req.body }, { new: true });
@@ -47,6 +52,8 @@ app.put("/update", async (req, res) => {
         res.status(500).json(err, "Error in Update api");
     }
 })
+
+// set component data to empty
 app.put("/delete", async (req, res) => {
     try {
         await model.findByIdAndUpdate(req.body._id, { heading: "", paragraph: "" }, { new: true });

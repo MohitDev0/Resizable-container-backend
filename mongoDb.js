@@ -1,3 +1,4 @@
+//connect with database
 const mongoose = require('mongoose');
 const mongoDb = process.env.MONGODB;
 mongoose.set('strictQuery', false);
